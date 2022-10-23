@@ -6,22 +6,6 @@ namespace PhoneBook
 {
     class Program
     {
-        //static Dictionary<string, Contact> GetContacts()
-        //{
-        //    return new Dictionary<string, Contact>
-        //    {
-        //        {"Marta",new Contact("Marta","516421882")},
-        //        {"Darek",new Contact("Darek","779845671")},
-        //        {"Ania",new Contact("Ania","456789121")},
-        //        {"Marek",new Contact("Marek","678098667")},
-        //        {"Danuta",new Contact("Danuta","432117980")},
-        //        {"Piotr",new Contact("Piotr","523112786")},
-        //        {"Czesio",new Contact("Czesio","898760112")},
-        //        {"Michał",new Contact("Michał","672456989")},
-        //        {"Gabi",new Contact("Gabi","765215678")},
-        //        {"Patryk",new Contact("Patryk","442567812")},
-        //    };
-        //}
         static void ShowAllContacts(List<Contact> contacts)
         {
             foreach (var contact in contacts)
@@ -67,38 +51,58 @@ namespace PhoneBook
                 {new Contact("Patryk","Kołodziejczyk","442567812")},
             };
 
+            menu:
             Console.WriteLine("Welcome in contact book, what you want to do?" +
                 " \n 1. Show all contacts" +
                 " \n 2. Show all contacts sorted" +
                 " \n 3. Add new contact" +
                 " \n 4. Search by number " +
-                " \n 5. Search by name");
+                " \n 5. Search by name \n " +
+                "6. Exit");
             switch (Console.ReadLine())
             {
                 case "1":
+                    Console.WriteLine();
                     ShowAllContacts(contacts);
-                    break;
+                    Console.WriteLine("\n --------------------- \n");
+                    goto menu;
                 case "2":
+                    Console.WriteLine();
                     SortContacts(contacts);
-                    break;
+                    Console.WriteLine("\n --------------------- \n");
+                    goto menu;
                 case "3":
+                    Console.WriteLine();
                     AddContact(contacts);
+                    Console.WriteLine();
                     ShowAllContacts(contacts);
-                    break;
+                    Console.WriteLine("\n --------------------- \n");
+                    goto menu;
                 case "4":
+                    Console.WriteLine();
                     Console.WriteLine("Write number");
                     string inputNumber = Console.ReadLine();
                     Contact ShowByNumber = contacts.FirstOrDefault(c => c.Number == inputNumber);
                     Console.WriteLine(ShowByNumber);
-                    break;
+                    Console.WriteLine("\n --------------------- \n");
+                    goto menu;
                 case "5":
+                    Console.WriteLine();
                     Console.WriteLine("Write name");
                     string inputName = Console.ReadLine();
                     Contact ShowByName = contacts.FirstOrDefault(c => c.Name == inputName);
                     Console.WriteLine(ShowByName);
+                    Console.WriteLine("\n --------------------- \n");
+                    goto menu;
+                case "6":
+                    Console.WriteLine();
+                    Console.WriteLine("Goodbye");
+                    Environment.Exit(1);
                     break;
 
-                default: Console.WriteLine("Invalid instruction");
+                default:
+                    Console.WriteLine();
+                    Console.WriteLine("Invalid instruction");
                     break;
             }
         }
